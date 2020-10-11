@@ -1,0 +1,11 @@
+UnitTestAddVector/Debug/
+UnitTestAddVector/x64/
+UnitTestAddVector/Release/
+ExcMath/Debug/
+ExcMath/x64/
+ExcMath/Release/
+[Dd]ebug/
+[Rr]elease/
+LICENSE
+x64/
+*.vs/*
