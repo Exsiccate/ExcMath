@@ -4,11 +4,12 @@
 void AddVectors(std::vector<unsigned long long> *Adds)
 {
 	int Rest = 0;
+	unsigned long long UnsLL = 1000000000000000000;
 	for (unsigned long long i = 0; i < (*Adds).size(); i++) {
 		(*Adds)[i] = (*Adds)[i] + (*Adds)[i] + Rest;
 		Rest = 0;
-		if ((*Adds)[i] >= 1000000000000000000) {
-			(*Adds)[i] = (*Adds)[i] - 1000000000000000000;
+		if ((*Adds)[i] >= UnsLL) {
+			(*Adds)[i] = (*Adds)[i] - UnsLL;
 			Rest = 1;
 		}
 	}
