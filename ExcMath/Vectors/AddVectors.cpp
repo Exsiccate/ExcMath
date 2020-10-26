@@ -1,4 +1,4 @@
-#include "AddVectors.h"
+#include "AddVectors.hpp"
 
 
 void AddVectors(std::vector<unsigned long long> *Adds)
@@ -15,11 +15,21 @@ void AddVectors(std::vector<unsigned long long> *Adds)
 	}
 	if (Rest == 1) (*Adds).push_back(1);
 }
-
-void AddVectors(
-	std::vector<unsigned long long>* AddA, 
-	std::vector<unsigned long long>* AddB, 
-	std::vector<unsigned long long>* Result)
+void AddVectors(std::vector<unsigned long long>* Adds, int* RestExponent)
+{
+	int Rest = 0;
+	unsigned long long UnsLL = pow(10, (*RestExponent));
+	for (unsigned long long i = 0; i < (*Adds).size(); i++) {
+		(*Adds)[i] = (*Adds)[i] + (*Adds)[i] + Rest;
+		Rest = 0;
+		if ((*Adds)[i] >= UnsLL) {
+			(*Adds)[i] = (*Adds)[i] - UnsLL;
+			Rest = 1;
+		}
+	}
+	if (Rest == 1) (*Adds).push_back(1);
+}
+void AddVectors(std::vector<unsigned long long>* AddA, std::vector<unsigned long long>* AddB, std::vector<unsigned long long>* Result)
 {
 	int Rest = 0;
 	unsigned long long UnsLL = 1000000000000000000;
@@ -75,19 +85,4 @@ void AddVectors(
 		if (Rest == 1) (*Result).push_back(1);
 	}
 
-}
-
-void AddVectors(std::vector<unsigned long long> *Adds,int *RestExponent)
-{
-	int Rest = 0;
-	unsigned long long UnsLL = pow(10, (*RestExponent));
-	for (unsigned long long i = 0; i < (*Adds).size(); i++) {
-		(*Adds)[i] = (*Adds)[i] + (*Adds)[i] + Rest;
-		Rest = 0;
-		if ((*Adds)[i] >= UnsLL) {
-			(*Adds)[i] = (*Adds)[i] - UnsLL;
-			Rest = 1;
-		}
-	}
-	if (Rest == 1) (*Adds).push_back(1);
 }

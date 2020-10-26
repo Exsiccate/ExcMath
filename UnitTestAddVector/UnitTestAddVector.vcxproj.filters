@@ -33,10 +33,10 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\ExcMath\Vectors\AddVectors.h">
+    <ClInclude Include="..\ExcMath\Vectors\AddVectors.hpp">
       <Filter>Header Files\Vectors</Filter>
     </ClInclude>
-    <ClInclude Include="..\ExcMath\Sequences\Sequences.h">
+    <ClInclude Include="..\ExcMath\Sequences\Sequences.hpp">
       <Filter>Header Files\Sequences</Filter>
     </ClInclude>
   </ItemGroup>

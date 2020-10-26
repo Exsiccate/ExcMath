@@ -30,10 +30,10 @@
     <ClInclude Include="pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Vectors\AddVectors.h">
+    <ClInclude Include="Vectors\AddVectors.hpp">
       <Filter>Header Files\Vectors</Filter>
     </ClInclude>
-    <ClInclude Include="Sequences.h">
+    <ClInclude Include="Sequences\Sequences.hpp">
       <Filter>Header Files\Sequences</Filter>
     </ClInclude>
   </ItemGroup>

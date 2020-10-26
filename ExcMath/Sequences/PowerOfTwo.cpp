@@ -1,4 +1,4 @@
-#include "Sequences.h"
+#include "Sequences.hpp"
 
 void PowerOfTwo(std::vector<std::string> *VecPowerOfTwo) {
 	(*VecPowerOfTwo).push_back("1");
