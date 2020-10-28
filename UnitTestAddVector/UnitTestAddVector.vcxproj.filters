@@ -50,7 +50,7 @@
     <ClCompile Include="..\ExcMath\Vectors\AddVectors.cpp">
       <Filter>Source Files\Vectors</Filter>
     </ClCompile>
-    <ClCompile Include="..\ExcMath\Sequences\PowerOfTwo.cpp">
+    <ClCompile Include="..\ExcMath\Sequences\Sequences.cpp">
       <Filter>Source Files\Sequences</Filter>
     </ClCompile>
   </ItemGroup>

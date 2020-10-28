@@ -9,6 +9,9 @@ void AddVectors(std::vector<unsigned long long> *Adds);
 // 10^RestExponent as Base, 
 // unsigned long long,
 void AddVectors(std::vector<unsigned long long>* Adds, int* RestExponent);
+// A + B saved on B,
+// unsigned long long,
+void AddVectors(std::vector<unsigned long long>* AddA, std::vector<unsigned long long>* AddB);
 // A + B saved on C,
 // AddA + AddB saved on Result,
 // unsigned long long,

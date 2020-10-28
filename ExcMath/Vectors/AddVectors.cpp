@@ -29,6 +29,60 @@ void AddVectors(std::vector<unsigned long long>* Adds, int* RestExponent)
 	}
 	if (Rest == 1) (*Adds).push_back(1);
 }
+void AddVectors(std::vector<unsigned long long>* AddA, std::vector<unsigned long long>* AddB)
+{
+	int Rest = 0;
+	unsigned long long UnsLL = 1000000000000000000;
+	if ((*AddA).size() == (*AddB).size()) {
+		for (unsigned long long i = 0; i < (*AddA).size(); i++) {
+			(*AddB)[i] = (*AddA)[i] + (*AddB)[i] + Rest;
+			Rest = 0;
+			if ((*AddB)[i] >= UnsLL) {
+				(*AddB)[i] = (*AddB)[i] - UnsLL;
+				Rest = 1;
+			}
+		}
+		if (Rest == 1) (*AddB).push_back(1);
+	}
+	else if ((*AddA).size() < (*AddB).size()){
+		for (unsigned long long i = 0; i < (*AddA).size(); i++) {
+			(*AddB)[i] = (*AddA)[i] + (*AddB)[i] + Rest;
+			Rest = 0;
+			if ((*AddB)[i] >= UnsLL) {
+				(*AddB)[i] = (*AddB)[i] - UnsLL;
+				Rest = 1;
+			}
+		}
+		for (unsigned long long i = (*AddA).size(); i < (*AddB).size(); i++) {
+			(*AddB)[i] = (*AddB)[i] + Rest;
+			Rest = 0;
+			if ((*AddB)[i] >= UnsLL) {
+				(*AddB)[i] = (*AddB)[i] - UnsLL;
+				Rest = 1;
+			}
+		}
+		if (Rest == 1) (*AddB).push_back(1);
+	}
+	else {
+		for (unsigned long long i = 0; i < (*AddB).size(); i++) {
+			(*AddB)[i] = (*AddA)[i] + (*AddB)[i] + Rest;
+			Rest = 0;
+			if ((*AddB)[i] >= UnsLL) {
+				(*AddB)[i] = (*AddB)[i] - UnsLL;
+				Rest = 1;
+			}
+		}
+		for (unsigned long long i = (*AddB).size(); i < (*AddA).size(); i++) {
+			(*AddB).push_back((*AddA)[i] + Rest);
+			Rest = 0;
+			if ((*AddB)[i] >= UnsLL) {
+				(*AddB)[i] = (*AddB)[i] - UnsLL;
+				Rest = 1;
+			}
+		}
+		if (Rest == 1) (*AddB).push_back(1);
+	}
+}
 void AddVectors(std::vector<unsigned long long>* AddA, std::vector<unsigned long long>* AddB, std::vector<unsigned long long>* Result)
 {
 	int Rest = 0;

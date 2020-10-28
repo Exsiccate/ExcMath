@@ -47,7 +47,7 @@
     <ClCompile Include="Vectors\AddVectors.cpp">
       <Filter>Source Files\Vectors</Filter>
     </ClCompile>
-    <ClCompile Include="Sequences\PowerOfTwo.cpp">
+    <ClCompile Include="Sequences\Sequences.cpp">
       <Filter>Source Files\Sequences</Filter>
     </ClCompile>
   </ItemGroup>
