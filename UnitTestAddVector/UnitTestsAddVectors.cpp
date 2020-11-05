@@ -176,6 +176,37 @@ namespace UnitTestAdd
 				AddVectorsCores3(VecToCheckAddA, VecToCheckAddB);
 				//then
 				Assert::AreEqual((*VecWIthGivenInput)[0], (*VecToCheckAddB)[0]);
+				//when
+				(*VecToCheckAddA).push_back(0);
+				(*VecToCheckAddA).push_back(0);
+				(*VecToCheckAddB).push_back(0);
+				(*VecToCheckAddB).push_back(0);
+				(*VecWIthGivenInput).push_back(0);
+				(*VecWIthGivenInput).push_back(0);
+				AddVectorsCores3(VecToCheckAddA, VecToCheckAddB);
+				//then
+				Assert::AreEqual((*VecWIthGivenInput)[0], (*VecToCheckAddB)[0]);
+				Assert::AreEqual((*VecWIthGivenInput)[1], (*VecToCheckAddB)[1]);
+				Assert::AreEqual((*VecWIthGivenInput)[2], (*VecToCheckAddB)[2]);
+			}
+			TEST_METHOD(Should_Add_Unity) {
+				//given
+				std::vector<unsigned long long> VecAddA, VecAddB, VecInput;
+				std::vector<unsigned long long>* VecToCheckAddA = &VecAddA;
+				std::vector<unsigned long long>* VecToCheckAddB = &VecAddB;
+				std::vector<unsigned long long>* VecWIthGivenInput = &VecInput;
+				//when
+				int i = 20;
+				for (int j = 0;j <= i;j++) {
+					(*VecToCheckAddA).push_back(1);
+					(*VecToCheckAddB).push_back(1);
+					(*VecWIthGivenInput).push_back(2);
+				}
+				AddVectorsCores3(VecToCheckAddA, VecToCheckAddB);
+				//then
+				for (int j = 0;j <= i;j++) {
+					Assert::AreEqual((*VecWIthGivenInput)[j], (*VecToCheckAddB)[j]);
+				}
 			}
 			TEST_METHOD(Should_Add_Vectors_Shorter_Than_3_Elements) {
 				//given
