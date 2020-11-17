@@ -92,8 +92,9 @@ namespace AddVectors {
 	void AplusAonB(std::vector<unsigned long long>* AddA, std::vector<unsigned long long>* AddB)
 	{
 		int Rest = 0;
+		(*AddB).resize(0);
 		for (unsigned long long i = 0; i < (*AddA).size(); i++) {
-			(*AddB)[i] = (*AddA)[i] + (*AddA)[i] + Rest;
+			(*AddB).push_back((*AddA)[i] + (*AddA)[i] + Rest);
 			Rest = 0;
 			if ((*AddB)[i] >= *CarryULL) {
 				(*AddB)[i] = (*AddB)[i] - *CarryULL;

@@ -307,6 +307,101 @@ namespace UnitTestAdd
 				Assert::AreNotEqual((*VecWIthGivenInput)[0], (*VecToCheckResult)[0]);
 			}
 		};
+		// A + A saved on B,
+		TEST_CLASS(UnitTestAddVectorsAplusAtoB)
+		{
+		public:
+			TEST_METHOD(Should_Add_Correctly) {
+				//given
+				std::string::size_type sz;
+				unsigned long long StringCutLength, StringCutStart;
+				unsigned long long BeginingOfVecPowerOfTwo, PartOfVecPowerOfTwo;
+				std::vector<unsigned long long> VecAddA;
+				std::vector<unsigned long long>* VecToCheckAddA = &VecAddA;
+				std::vector<unsigned long long> VecAddB;
+				std::vector<unsigned long long>* VecToCheckAddB = &VecAddB;
+				std::vector<std::string> VecPowerOfTwoInput;
+				std::vector<std::string>* VecPowerOfTwo = &VecPowerOfTwoInput;
+				//when
+				PowerOfTwo(VecPowerOfTwo);
+				(*VecToCheckAddA).push_back(1);
+
+				for (unsigned long long i = 1; i < 1000; i++) {
+					AddVectors::AplusAonB(VecToCheckAddA, VecToCheckAddB);
+					//then
+					for (unsigned long long j = 0; j < (*VecToCheckAddB).size() - 1; j++) {
+						StringCutStart = (*VecPowerOfTwo)[i].size() - (j + 1) * 18;
+						StringCutLength = 18;
+						PartOfVecPowerOfTwo = std::stoll((*VecPowerOfTwo)[i].substr(StringCutStart, StringCutLength), &sz);
+						//then
+						Assert::AreEqual(PartOfVecPowerOfTwo, (*VecToCheckAddB)[j]);
+					}
+					if ((*VecToCheckAddB).size() > 1) {
+						StringCutStart = 0;
+						StringCutLength = (*VecPowerOfTwo)[i].size() - ((*VecToCheckAddB).size() - 1) * (18);
+						BeginingOfVecPowerOfTwo = std::stoll((*VecPowerOfTwo)[i].substr(StringCutStart, StringCutLength), &sz);
+						//then
+						Assert::AreEqual(BeginingOfVecPowerOfTwo, (*VecToCheckAddB)[(*VecToCheckAddB).size() - 1]);
+					}
+					AddVectors::AplusAonA(VecToCheckAddA);
+				}
+			}
+			TEST_METHOD(Should_Add_Zero) {
+				//given
+				std::vector<unsigned long long> VecResultA;
+				std::vector<unsigned long long>* VecToCheckResultA = &VecResultA;
+				std::vector<unsigned long long> VecResultB;
+				std::vector<unsigned long long>* VecToCheckResultB = &VecResultB;
+				(*VecToCheckResultA).push_back(0);
+				//when
+				for (unsigned long long i = 0; i < 15; i++) {
+					AddVectors::AplusAonB(VecToCheckResultA, VecToCheckResultB);
+				}
+				//then
+				Assert::AreEqual((unsigned long long)0, (*VecToCheckResultB)[0]);
+			}
+			TEST_METHOD(Should_Add_Max_Value) {
+				//given
+				std::vector<unsigned long long> VecResultA;
+				std::vector<unsigned long long>* VecToCheckResultA = &VecResultA;
+				std::vector<unsigned long long> VecResultB;
+				std::vector<unsigned long long>* VecToCheckResultB = &VecResultB;
+				std::vector<unsigned long long> VecInput;
+				std::vector<unsigned long long>* VecWIthGivenInput = &VecInput;
+				(*VecToCheckResultA).push_back(999999999999999999);
+				(*VecWIthGivenInput).push_back(999999999999999998);
+				int i = 1;
+				for (i = 1; i <= 10; i++) {
+					(*VecToCheckResultA).push_back(999999999999999999);
+					(*VecWIthGivenInput).push_back(999999999999999999);
+				}
+				(*VecWIthGivenInput).push_back(1);
+				//when
+				AddVectors::AplusAonB(VecToCheckResultA, VecToCheckResultB);
+				//then
+				for (int j = 0; j <= i; j++) {
+					Assert::AreEqual((*VecWIthGivenInput)[j], (*VecToCheckResultB)[j]);
+				}
+			}
+			TEST_METHOD(Should_Not_Add_Correctly) {
+				//given
+				std::vector<unsigned long long> VecResultA;
+				std::vector<unsigned long long>* VecToCheckResultA = &VecResultA;
+				std::vector<unsigned long long> VecResultB;
+				std::vector<unsigned long long>* VecToCheckResultB = &VecResultB;
+
+				std::vector<unsigned long long> VecInput;
+				std::vector<unsigned long long>* VecWIthGivenInput = &VecInput;
+
+				(*VecToCheckResultA).push_back(1);
+				(*VecWIthGivenInput).push_back(0);
+
+				//when
+				AddVectors::AplusAonB(VecToCheckResultA, VecToCheckResultB);
+				//then
+				Assert::AreNotEqual((*VecWIthGivenInput)[0], (*VecToCheckResultB)[0]);
+			}
+		};
 		// A + B saved on B,
 		TEST_CLASS(UnitTestAddVectorsAplusBtoB) {
 		public:
