@@ -25,4 +25,7 @@ namespace AddVectors{
 	// A + B saved on B, 3 cores,
 	// unsigned long long,
 	void AplusBonBwithCores3(std::vector<unsigned long long>* AddA, std::vector<unsigned long long>* AddB);
+	// A + A saved on B, 3 cores,
+	// unsigned long long,
+	void AplusAonBwithCores3(std::vector<unsigned long long>* AddA, std::vector<unsigned long long>* AddB);
 }
