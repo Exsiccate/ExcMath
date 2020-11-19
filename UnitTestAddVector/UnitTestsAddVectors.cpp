@@ -5,9 +5,89 @@
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
-namespace UnitTestAdd
-{
+namespace UnitTestAdd{
 	namespace UnitTestAddCores3UnsignedLongLong {
+		// A + A saved on B,
+		TEST_CLASS(UnitTestAddVectorsAplusAtoBCores3) {
+		public:
+			TEST_METHOD(Should_Add_Zeros) {
+				//given
+				std::vector<unsigned long long> VecAddA, VecAddB, VecInput;
+				std::vector<unsigned long long>* VecToCheckAddA = &VecAddA;
+				std::vector<unsigned long long>* VecToCheckAddB = &VecAddB;
+				std::vector<unsigned long long>* VecWIthGivenInput = &VecInput;
+				//when
+				(*VecToCheckAddA).push_back(0);
+				(*VecToCheckAddB).push_back(0);
+				(*VecWIthGivenInput).push_back(0);
+				AddVectors::AplusAonBwithCores3(VecToCheckAddA, VecToCheckAddB);
+				//then
+				Assert::AreEqual((*VecWIthGivenInput)[0], (*VecToCheckAddB)[0]);
+				//when
+				for (int i = 0;i < 3;i++) {
+					(*VecToCheckAddA).push_back(0);
+					(*VecWIthGivenInput).push_back(0);
+				}
+				AddVectors::AplusAonBwithCores3(VecToCheckAddA, VecToCheckAddB);
+				//then
+				Assert::AreEqual((*VecWIthGivenInput)[0], (*VecToCheckAddB)[0]);
+				Assert::AreEqual((*VecWIthGivenInput)[1], (*VecToCheckAddB)[1]);
+				Assert::AreEqual((*VecWIthGivenInput)[2], (*VecToCheckAddB)[2]);
+				Assert::AreEqual((*VecWIthGivenInput)[3], (*VecToCheckAddB)[3]);
+			}
+			TEST_METHOD(Should_Add_Unity) {
+				//given
+				std::vector<unsigned long long> VecAddA, VecAddB, VecInput;
+				std::vector<unsigned long long>* VecToCheckAddA = &VecAddA;
+				std::vector<unsigned long long>* VecToCheckAddB = &VecAddB;
+				std::vector<unsigned long long>* VecWIthGivenInput = &VecInput;
+				//when
+				int i = 20;
+				for (int j = 0;j <= i;j++) {
+					(*VecToCheckAddA).push_back(1);
+					(*VecWIthGivenInput).push_back(2);
+				}
+				AddVectors::AplusAonBwithCores3(VecToCheckAddA, VecToCheckAddB);
+				//then
+				for (int j = 0;j <= i;j++) {
+					Assert::AreEqual((*VecWIthGivenInput)[j], (*VecToCheckAddB)[j]);
+				}
+			}
+			TEST_METHOD(Should_Add_Max_Value) {
+				//given
+				std::vector<unsigned long long> VecResultA;
+				std::vector<unsigned long long>* VecToCheckResultA = &VecResultA;
+				std::vector<unsigned long long> VecResultB;
+				std::vector<unsigned long long>* VecToCheckResultB = &VecResultB;
+				std::vector<unsigned long long> VecInput;
+				std::vector<unsigned long long>* VecWIthGivenInput = &VecInput;
+				(*VecToCheckResultA).push_back(999999999999999999);
+				(*VecWIthGivenInput).push_back(999999999999999998);
+				int i = 1;
+				for (i = 1; i <= 10; i++) {
+					(*VecToCheckResultA).push_back(999999999999999999);
+					(*VecWIthGivenInput).push_back(999999999999999999);
+				}
+				(*VecWIthGivenInput).push_back(1);
+				//when
+				AddVectors::AplusAonBwithCores3(VecToCheckResultA, VecToCheckResultB);
+				//then
+				for (int j = 0; j <= i; j++) {
+					Assert::AreEqual((*VecWIthGivenInput)[j], (*VecToCheckResultB)[j]);
+				}
+			}
+			TEST_METHOD(Should_Add_Empty) {
+				//given
+				std::vector<unsigned long long> VecAddA, VecAddB;
+				std::vector<unsigned long long>* VecToCheckAddA = &VecAddA;
+				std::vector<unsigned long long>* VecToCheckAddB = &VecAddB;
+				//when
+				(*VecToCheckAddA).resize(0);
+				AddVectors::AplusAonBwithCores3(VecToCheckAddA, VecToCheckAddB);
+				//then
+				Assert::AreEqual((unsigned long long)0, (*VecToCheckAddB).size());
+			}
+		};
 		// A + B saved on B,
 		TEST_CLASS(UnitTestAddVectorsAplusBtoBCores3){
 		public:

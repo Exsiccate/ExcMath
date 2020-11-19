@@ -25,7 +25,56 @@ namespace {
 }
 
 namespace {
-	inline void AddVectorsCore1(
+	inline void AplusAonBCore1(
+		std::vector<unsigned long long>* Core1AddA,
+		std::vector<unsigned long long>* Core1AddB,
+		unsigned long long* Core1Start,
+		unsigned long long* Core1Stop,
+		unsigned long long* Core1Rest)
+	{
+		for (unsigned long long i = *Core1Start; i <= *Core1Stop; i++) {
+			(*Core1AddB)[i] = (*Core1AddA)[i] + (*Core1AddA)[i] + *Core1Rest;
+			*Core1Rest = 0;
+			if ((*Core1AddB)[i] >= *CarryULL) {
+				(*Core1AddB)[i] = (*Core1AddB)[i] - *CarryULL;
+				*Core1Rest = 1;
+			}
+		}
+	}
+	inline void AplusAonBCore2(
+		std::vector<unsigned long long>* Core2AddA,
+		std::vector<unsigned long long>* Core2AddB,
+		unsigned long long* Core2Start,
+		unsigned long long* Core2Stop,
+		unsigned long long* Core2Rest)
+	{
+		for (unsigned long long i = *Core2Start + 1; i <= *Core2Stop; i++) {
+			(*Core2AddB)[i] = (*Core2AddA)[i] + (*Core2AddA)[i] + *Core2Rest;
+			*Core2Rest = 0;
+			if ((*Core2AddB)[i] >= *CarryULL) {
+				(*Core2AddB)[i] = (*Core2AddB)[i] - *CarryULL;
+				*Core2Rest = 1;
+			}
+		}
+	}
+	inline void AplusAonBCore3(
+		std::vector<unsigned long long>* Core3AddA,
+		std::vector<unsigned long long>* Core3AddB,
+		unsigned long long* Core3Start,
+		unsigned long long* Core3Stop,
+		unsigned long long* Core3Rest)
+	{
+		for (unsigned long long i = *Core3Start + 1; i <= *Core3Stop; i++) {
+			(*Core3AddB)[i] = (*Core3AddA)[i] + (*Core3AddA)[i] + *Core3Rest;
+			*Core3Rest = 0;
+			if ((*Core3AddB)[i] >= *CarryULL) {
+				(*Core3AddB)[i] = (*Core3AddB)[i] - *CarryULL;
+				*Core3Rest = 1;
+			}
+		}
+	}
+
+	inline void AplusBonBCore1(
 		std::vector<unsigned long long>* Core1AddA,
 		std::vector<unsigned long long>* Core1AddB,
 		unsigned long long* Core1Start,
@@ -41,7 +90,7 @@ namespace {
 			}
 		}
 	}
-	inline void AddVectorsCore2(
+	inline void AplusBonBCore2(
 		std::vector<unsigned long long>* Core2AddA,
 		std::vector<unsigned long long>* Core2AddB,
 		unsigned long long* Core2Start,
@@ -57,7 +106,7 @@ namespace {
 			}
 		}
 	}
-	inline void AddVectorsCore3(
+	inline void AplusBonBCore3(
 		std::vector<unsigned long long>* Core3AddA,
 		std::vector<unsigned long long>* Core3AddB,
 		unsigned long long* Core3Start,
@@ -227,7 +276,40 @@ namespace AddVectors {
 		}
 		if (Rest == 1) (*Adds).push_back(1);
 	}
-	
+
+	void AplusAonBwithCores3(std::vector<unsigned long long>* AddA, std::vector<unsigned long long>* AddB)
+	{
+		(*AddB).resize((*AddA).size());
+		if ((*AddA).size() < 3) {
+			AplusAonB(AddA, AddB);
+			return;
+		}
+		*Range0 = 0;
+		*Range1 = floor((*AddA).size() / 3) - 1;
+		*Range2 = 2 * (*Range1) + 1;
+		*Range3 = (*AddA).size() - 1;
+
+		*Core1Rest = 0;
+		*Core2Rest = 0;
+		*Core3Rest = 0;
+
+		if ((*AddA)[*Range1] + (*AddA)[*Range1] >= *CarryULL) *Core2Rest = 1;
+		if ((*AddA)[*Range2] + (*AddA)[*Range2] >= *CarryULL) *Core3Rest = 1;
+
+		std::thread Core1(AplusAonBCore1, AddA, AddB, Range0, Range1, Core1Rest);
+		std::thread Core2(AplusAonBCore2, AddA, AddB, Range1, Range2, Core2Rest);
+		std::thread Core3(AplusAonBCore3, AddA, AddB, Range2, Range3, Core3Rest);
+
+		Core1.join();
+		Core2.join();
+		Core3.join();
+
+		if (*Core3Rest == 1) {
+			if ((*AddA).size() == (*AddB).size()) {
+				(*AddB).push_back(1);
+			}
+		}
+	}
 	void AplusBonBwithCores3(std::vector<unsigned long long>* AddA, std::vector<unsigned long long>* AddB)
 	{
 		if ((*AddA).size() <= (*AddB).size()) {
@@ -258,9 +340,9 @@ namespace AddVectors {
 		if ((*AddA)[*Range1] + (*AddB)[*Range1] >= *CarryULL) *Core2Rest = 1;
 		if ((*AddA)[*Range2] + (*AddB)[*Range2] >= *CarryULL) *Core3Rest = 1;
 
-		std::thread Core1(AddVectorsCore1, AddA, AddB, Range0, Range1, Core1Rest);
-		std::thread Core2(AddVectorsCore2, AddA, AddB, Range1, Range2, Core2Rest);
-		std::thread Core3(AddVectorsCore3, AddA, AddB, Range2, Range3, Core3Rest);
+		std::thread Core1(AplusBonBCore1, AddA, AddB, Range0, Range1, Core1Rest);
+		std::thread Core2(AplusBonBCore2, AddA, AddB, Range1, Range2, Core2Rest);
+		std::thread Core3(AplusBonBCore3, AddA, AddB, Range2, Range3, Core3Rest);
 
 		Core1.join();
 		Core2.join();
