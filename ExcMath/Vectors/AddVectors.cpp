@@ -260,20 +260,11 @@ namespace AddVectors {
 		int Core2RestStartValue = 0;
 		int Core3RestStartValue = 0;
 		int* Core3Rest = &Core3RestStartValue;
-		/*
-		int* Core1Rest = &Core1RestStartValue;
-		int* Core2Rest = &Core2RestStartValue;
-		*/
 		unsigned long long RangeStartValue0 = 0;
 		unsigned long long RangeStartValue1 = 0;
 		unsigned long long RangeStartValue2 = 0;
 		unsigned long long RangeStartValue3 = 0;
-		/*
-		unsigned long long* Range0 = &RangeStartValue0;
-		unsigned long long* Range1 = &RangeStartValue1;
-		unsigned long long* Range2 = &RangeStartValue2;
-		unsigned long long* Range3 = &RangeStartValue3;
-		*/
+
 		(*AddB).resize((*AddA).size());
 		if ((*AddA).size() < 3) {
 			AplusAonB(AddA, AddB);
@@ -311,10 +302,12 @@ namespace AddVectors {
 		int Core2RestStartValue = 0;
 		int Core3RestStartValue = 0;
 		int *Core3Rest = &Core3RestStartValue;
+		
 		long long RangeStartValue0 = 0;
 		long long RangeStartValue1 = 0;
 		long long RangeStartValue2 = 0;
 		long long RangeStartValue3 = 0;
+
 		if ((*AddA).size() <= (*AddB).size()) {
 			if ((*AddA).size() < 3) {
 				AplusBonB(AddA, AddB);
@@ -338,10 +331,10 @@ namespace AddVectors {
 
 		Core1RestStartValue = 0;
 		Core2RestStartValue = 0;
-		Core3RestStartValue = 0;
+		*Core3Rest = 0;
 
 		if ((*AddA)[RangeStartValue1] + (*AddB)[RangeStartValue1] >= 1000000000000000000) Core2RestStartValue = 1;
-		if ((*AddA)[RangeStartValue2] + (*AddB)[RangeStartValue2] >= 1000000000000000000) Core3RestStartValue = 1;
+		if ((*AddA)[RangeStartValue2] + (*AddB)[RangeStartValue2] >= 1000000000000000000) *Core3Rest = 1;
 
 		std::thread Core1(AplusBonBCore1, AddA, AddB, RangeStartValue0, RangeStartValue1, Core1RestStartValue);
 		std::thread Core2(AplusBonBCore2, AddA, AddB, RangeStartValue1, RangeStartValue2, Core2RestStartValue);
@@ -351,36 +344,36 @@ namespace AddVectors {
 		Core2.join();
 		Core3.join();
 
-		if (Core3RestStartValue == 1) {
+		if (*Core3Rest == 1) {
 			if ((*AddA).size() == (*AddB).size()) {
 				(*AddB).push_back(1);
 			}
 			else if ((*AddA).size() > (*AddB).size()) {
 				for (long i = RangeStartValue3 + 1; i < (*AddA).size(); i++) {
-					(*AddB).push_back((*AddA)[i] + (Core3RestStartValue));
+					(*AddB).push_back((*AddA)[i] + (*Core3Rest));
 					if ((*AddB)[i] >= 1000000000000000000) {
 						(*AddB)[i] = (*AddB)[i] - 1000000000000000000;
-						//*Core3Rest = 1;
+						*Core3Rest = 1;
 					}
 					else {
-						Core3RestStartValue = 0;
+						*Core3Rest = 0;
 						break;
 					}
 				}
-				if (Core3RestStartValue == 1) (*AddB).push_back(1);
+				if (*Core3Rest == 1) (*AddB).push_back(1);
 			}
 			else {
 				for (unsigned long long i  = RangeStartValue3 + 1; i < (*AddB).size(); i++) {
-					(*AddB)[i] = (*AddB)[i] + (Core3RestStartValue);
+					(*AddB)[i] = (*AddB)[i] + (*Core3Rest);
 					if ((*AddB)[i] >= 1000000000000000000) {
 						(*AddB)[i] = (*AddB)[i] - 1000000000000000000;
 					}
 					else {
-						Core3RestStartValue = 0;
+						*Core3Rest = 0;
 						break;
 					}
 				}
-				if (Core3RestStartValue == 1) (*AddB).push_back(1);
+				if (*Core3Rest == 1) (*AddB).push_back(1);
 			}
 		}
 	}
