@@ -1,6 +1,8 @@
 #include "AddVectors.hpp"
 #include <thread>
+//#include <bitset>
 
+//cores...
 namespace {
 	inline void AplusAonBCore1(
 		std::vector<unsigned long long>* Core1AddA,
@@ -98,6 +100,45 @@ namespace {
 				*Core3Rest = 1;
 			}
 		}
+	}
+}
+
+//fuld adder
+namespace {
+
+// CPP program to modify a bit at position p in n to b. 
+// n - input number,
+// p - position,
+// b - to which bit,
+	inline void modifyBit64(unsigned long long* n, int p, int b)
+	{
+		__int64 mask = static_cast <__int64>(1) << p;
+		*n = (static_cast <__int64>(*n) & ~mask) | ((b << p) & mask);
+	}
+	void modifyBit(__int32* n, __int32 p, __int32 b)
+	{
+		__int32 mask = 1 << p;
+		*n = (*n & ~mask) | ((b << p) & mask);
+	}
+	//n-number,
+	//k-position,
+	void isKthBitSet64(__int64 n, __int64 k)
+	{
+		/*
+		if (static_cast<__int64>(n) & (static_cast <__int64>(1) << (static_cast<__int64>(k) - 1)))
+			cout << "n: " << n << ", k: " << k << ", SET" << endl;
+		else
+			cout << "n: " << n << ", k: " << k << ", NOT SET" << endl;
+		*/
+	}
+	void isKthBitSet(__int32 n, __int32 k)
+	{
+		/*
+		if (n & (1 << (k - 1)))
+			//cout << "n: " << n << ", k: " << k << ", SET" << endl;
+		else
+			std::cout << "n: " << n << ", k: " << k << ", NOT SET" << endl;
+		*/
 	}
 }
 
@@ -252,6 +293,35 @@ namespace AddVectors {
 			}
 		}
 		if (Rest == 1) (*Adds).push_back(1);
+	}
+
+	void AplusAonA_FullAdder(std::vector<unsigned long long>* Adds)
+	{
+		unsigned long long Rest = 0;
+		int RestRewindingTheCounter = 0;
+		unsigned long long AddsTemp = 0;
+		for (unsigned long long i = 0; i < (*Adds).size(); i++) {
+			Rest = (*Adds)[i] & (*Adds)[i];
+			(*Adds)[i] = (*Adds)[i] ^ (*Adds)[i];
+			AddsTemp = static_cast<__int64>(Rest) << 1;
+			while (AddsTemp != 0)
+			{
+				Rest = AddsTemp & (*Adds)[i];
+				(*Adds)[i] = AddsTemp ^ (*Adds)[i];
+				AddsTemp = static_cast<__int64>(Rest) << 1;
+			}
+			(*Adds)[i] = (*Adds)[i] ^ RestRewindingTheCounter;
+
+			//condition below as decimal number: >9223372036854775807,
+			if (static_cast<__int64>((*Adds)[i]) & (static_cast <__int64>(1) << (static_cast<__int64>(64) - 1)))
+			{
+				RestRewindingTheCounter = 1;
+			}
+			else{
+				RestRewindingTheCounter = 0;
+			}
+		}
+		if (RestRewindingTheCounter == 1) (*Adds).push_back(1);
 	}
 
 	void AplusAonBwithCores3(std::vector<unsigned long long>* AddA, std::vector<unsigned long long>* AddB)

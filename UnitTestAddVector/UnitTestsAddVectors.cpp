@@ -6,6 +6,48 @@
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace UnitTestAdd{
+	namespace UnitTestAdd_FullAdder_UnsignedLongLong {
+		// A + A saved on A,
+		TEST_CLASS(UnitTestAddVectorsAplusAtoA)
+		{
+		public:
+			TEST_METHOD(Should_Add_Correctly) {
+				// to add,
+				//(*VecToCheckResult).push_back(4611686018427387903);
+			}
+			TEST_METHOD(Should_Add_Zero) {
+				//given
+				std::vector<unsigned long long> VecResult;
+				std::vector<unsigned long long>* VecToCheckResult = &VecResult;
+				(*VecToCheckResult).push_back(0);
+				//when
+				for (unsigned long long i = 0; i < 15; i++) {
+					AddVectors::AplusAonA_FullAdder(VecToCheckResult);
+				}
+				//then
+				Assert::AreEqual((unsigned long long)0, (*VecToCheckResult)[0]);
+			}
+			TEST_METHOD(Should_Not_Add_Correctly) {
+				//given
+				std::vector<unsigned long long> VecResult;
+				std::vector<unsigned long long>* VecToCheckResult = &VecResult;
+
+				std::vector<unsigned long long> VecInput;
+				std::vector<unsigned long long>* VecWIthGivenInput = &VecInput;
+
+				(*VecToCheckResult).push_back(1);
+				(*VecWIthGivenInput).push_back(0);
+
+				//when
+				AddVectors::AplusAonA_FullAdder(VecToCheckResult);
+				//then
+				Assert::AreNotEqual((*VecWIthGivenInput)[0], (*VecToCheckResult)[0]);
+			}
+			TEST_METHOD(Should_Add_Max_Value) {
+				//to add,
+			}
+		};
+	}
 	namespace UnitTestAddCores3UnsignedLongLong {
 		// A + A saved on B,
 		TEST_CLASS(UnitTestAddVectorsAplusAtoBCores3) {
