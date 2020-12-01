@@ -56,11 +56,11 @@ namespace {
 	inline void AplusBonBCore1(
 		std::vector<unsigned long long>* Core1AddA,
 		std::vector<unsigned long long>* Core1AddB,
-		long long Core1Start,
-		long long Core1Stop,
+		unsigned long long Core1Start,
+		unsigned long long Core1Stop,
 		int Core1Rest)
 	{
-		for (long i = Core1Start; i <= Core1Stop; i++) {
+		for (unsigned long long i = Core1Start; i <= Core1Stop; i++) {
 			(*Core1AddB)[i] = (*Core1AddB)[i] + (*Core1AddA)[i] + Core1Rest;
 			Core1Rest = 0;
 			if ((*Core1AddB)[i] >= 1000000000000000000) {
@@ -72,11 +72,11 @@ namespace {
 	inline void AplusBonBCore2(
 		std::vector<unsigned long long>* Core2AddA,
 		std::vector<unsigned long long>* Core2AddB,
-		long long Core2Start,
-		long long Core2Stop,
+		unsigned long long Core2Start,
+		unsigned long long Core2Stop,
 		int Core2Rest) {
 
-		for (long i = Core2Start + 1; i <= Core2Stop; i++) {
+		for (unsigned long long i = Core2Start + 1; i <= Core2Stop; i++) {
 			(*Core2AddB)[i] = (*Core2AddB)[i] + (*Core2AddA)[i] + Core2Rest;
 			Core2Rest = 0;
 			if ((*Core2AddB)[i] >= 1000000000000000000) {
@@ -88,11 +88,11 @@ namespace {
 	inline void AplusBonBCore3(
 		std::vector<unsigned long long>* Core3AddA,
 		std::vector<unsigned long long>* Core3AddB,
-		long long Core3Start,
-		long long Core3Stop,
+		unsigned long long Core3Start,
+		unsigned long long Core3Stop,
 		int *Core3Rest) {
 
-		for (long i = Core3Start + 1; i <= Core3Stop; i++) {
+		for (unsigned long long i = Core3Start + 1; i <= Core3Stop; i++) {
 			(*Core3AddB)[i] = (*Core3AddB)[i] + (*Core3AddA)[i] + *Core3Rest;
 			*Core3Rest = 0;
 			if ((*Core3AddB)[i] >= 1000000000000000000) {
@@ -113,7 +113,7 @@ namespace {
 	inline void modifyBit64(unsigned long long* n, int p, int b)
 	{
 		__int64 mask = static_cast <__int64>(1) << p;
-		*n = (static_cast <__int64>(*n) & ~mask) | ((b << p) & mask);
+		*n = (static_cast <__int64>(*n) & ~mask) | ((static_cast <__int64>(b) << p) & mask);
 	}
 	void modifyBit(__int32* n, __int32 p, __int32 b)
 	{
@@ -280,6 +280,25 @@ namespace AddVectors {
 
 	}
 
+	void AplusBonB_noRestCheck(std::vector<unsigned long long>* AddA, std::vector<unsigned long long>* AddB)
+	{
+		if ((*AddA).size() == (*AddB).size()) {
+			for (unsigned long long i   = 0; i < (*AddA).size(); i++) {
+				(*AddB)[i] = (*AddA)[i] + (*AddB)[i];
+			}
+		}
+		else if ((*AddA).size() < (*AddB).size()) {
+			for (unsigned long long i  = 0; i < (*AddA).size(); i++) {
+				(*AddB)[i] = (*AddA)[i] + (*AddB)[i];
+			}
+		}
+		else {
+			for (unsigned long long i  = 0; i < (*AddB).size(); i++) {
+				(*AddB)[i] = (*AddA)[i] + (*AddB)[i];
+			}
+		}
+	}
+
 	void AplusAonAwithRestExponent(std::vector<unsigned long long>* Adds, int* RestExponent)
 	{
 		int Rest = 0;
@@ -373,10 +392,10 @@ namespace AddVectors {
 		int Core3RestStartValue = 0;
 		int *Core3Rest = &Core3RestStartValue;
 		
-		long long RangeStartValue0 = 0;
-		long long RangeStartValue1 = 0;
-		long long RangeStartValue2 = 0;
-		long long RangeStartValue3 = 0;
+		unsigned long long RangeStartValue0 = 0;
+		unsigned long long RangeStartValue1 = 0;
+		unsigned long long RangeStartValue2 = 0;
+		unsigned long long RangeStartValue3 = 0;
 
 		if ((*AddA).size() <= (*AddB).size()) {
 			if ((*AddA).size() < 3) {
@@ -419,7 +438,7 @@ namespace AddVectors {
 				(*AddB).push_back(1);
 			}
 			else if ((*AddA).size() > (*AddB).size()) {
-				for (long i = RangeStartValue3 + 1; i < (*AddA).size(); i++) {
+				for (unsigned long long i = RangeStartValue3 + 1; i < (*AddA).size(); i++) {
 					(*AddB).push_back((*AddA)[i] + (*Core3Rest));
 					if ((*AddB)[i] >= 1000000000000000000) {
 						(*AddB)[i] = (*AddB)[i] - 1000000000000000000;

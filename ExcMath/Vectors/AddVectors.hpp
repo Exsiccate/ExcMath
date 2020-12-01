@@ -17,6 +17,10 @@ namespace AddVectors{
 	// unsigned long long,
 	void AplusBonC(std::vector<unsigned long long>* AddA, std::vector<unsigned long long>* AddB, std::vector<unsigned long long>* Result);
 
+	// A + B saved on B,
+	// unsigned long long,
+	// no Rest check - risk of rewind range,
+	void AplusBonB_noRestCheck(std::vector<unsigned long long>* AddA, std::vector<unsigned long long>* AddB);
 
 	// A + A saved on A,
 	// 10^RestExponent as Base, 
