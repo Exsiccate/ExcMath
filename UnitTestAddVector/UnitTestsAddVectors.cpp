@@ -22,7 +22,7 @@ namespace UnitTestAdd{
 				(*VecToCheckResult).push_back(0);
 				//when
 				for (unsigned long long i = 0; i < 15; i++) {
-					AddVectors::AplusAonA_FullAdder(VecToCheckResult);
+					AddVectors::FullAdder::AplusAonA_FullAdder(VecToCheckResult);
 				}
 				//then
 				Assert::AreEqual((unsigned long long)0, (*VecToCheckResult)[0]);
@@ -39,7 +39,7 @@ namespace UnitTestAdd{
 				(*VecWIthGivenInput).push_back(0);
 
 				//when
-				AddVectors::AplusAonA_FullAdder(VecToCheckResult);
+				AddVectors::FullAdder::AplusAonA_FullAdder(VecToCheckResult);
 				//then
 				Assert::AreNotEqual((*VecWIthGivenInput)[0], (*VecToCheckResult)[0]);
 			}
@@ -62,7 +62,7 @@ namespace UnitTestAdd{
 				(*VecToCheckAddA).push_back(0);
 				(*VecToCheckAddB).push_back(0);
 				(*VecWIthGivenInput).push_back(0);
-				AddVectors::AplusAonBwithCores3(VecToCheckAddA, VecToCheckAddB);
+				AddVectors::Cores3::AplusAonBwithCores3(VecToCheckAddA, VecToCheckAddB);
 				//then
 				Assert::AreEqual((*VecWIthGivenInput)[0], (*VecToCheckAddB)[0]);
 				//when
@@ -70,7 +70,7 @@ namespace UnitTestAdd{
 					(*VecToCheckAddA).push_back(0);
 					(*VecWIthGivenInput).push_back(0);
 				}
-				AddVectors::AplusAonBwithCores3(VecToCheckAddA, VecToCheckAddB);
+				AddVectors::Cores3::AplusAonBwithCores3(VecToCheckAddA, VecToCheckAddB);
 				//then
 				Assert::AreEqual((*VecWIthGivenInput)[0], (*VecToCheckAddB)[0]);
 				Assert::AreEqual((*VecWIthGivenInput)[1], (*VecToCheckAddB)[1]);
@@ -89,7 +89,7 @@ namespace UnitTestAdd{
 					(*VecToCheckAddA).push_back(1);
 					(*VecWIthGivenInput).push_back(2);
 				}
-				AddVectors::AplusAonBwithCores3(VecToCheckAddA, VecToCheckAddB);
+				AddVectors::Cores3::AplusAonBwithCores3(VecToCheckAddA, VecToCheckAddB);
 				//then
 				for (int j = 0;j <= i;j++) {
 					Assert::AreEqual((*VecWIthGivenInput)[j], (*VecToCheckAddB)[j]);
@@ -112,7 +112,7 @@ namespace UnitTestAdd{
 				}
 				(*VecWIthGivenInput).push_back(1);
 				//when
-				AddVectors::AplusAonBwithCores3(VecToCheckResultA, VecToCheckResultB);
+				AddVectors::Cores3::AplusAonBwithCores3(VecToCheckResultA, VecToCheckResultB);
 				//then
 				for (int j = 0; j <= i; j++) {
 					Assert::AreEqual((*VecWIthGivenInput)[j], (*VecToCheckResultB)[j]);
@@ -125,7 +125,7 @@ namespace UnitTestAdd{
 				std::vector<unsigned long long>* VecToCheckAddB = &VecAddB;
 				//when
 				(*VecToCheckAddA).resize(0);
-				AddVectors::AplusAonBwithCores3(VecToCheckAddA, VecToCheckAddB);
+				AddVectors::Cores3::AplusAonBwithCores3(VecToCheckAddA, VecToCheckAddB);
 				//then
 				Assert::AreEqual((unsigned long long)0, (*VecToCheckAddB).size());
 			}
@@ -152,7 +152,7 @@ namespace UnitTestAdd{
 				}
 				(*VecWIthGivenInput).push_back(1);
 				//when
-				AddVectors::AplusBonBwithCores3(VecToCheckAddA, VecToCheckAddB);
+				AddVectors::Cores3::AplusBonBwithCores3(VecToCheckAddA, VecToCheckAddB);
 				//then
 				for (int j = 0;j <= i;j++) {
 					Assert::AreEqual((*VecWIthGivenInput)[j], (*VecToCheckAddB)[j]);
@@ -181,7 +181,7 @@ namespace UnitTestAdd{
 				}
 				(*VecWIthGivenInput).push_back(1);
 				//when
-				AddVectors::AplusBonBwithCores3(VecToCheckAddA, VecToCheckAddB);
+				AddVectors::Cores3::AplusBonBwithCores3(VecToCheckAddA, VecToCheckAddB);
 				//then
 				for (int j = 0;j <= i;j++) {
 					Assert::AreEqual((*VecWIthGivenInput)[j], (*VecToCheckAddB)[j]);
@@ -210,7 +210,7 @@ namespace UnitTestAdd{
 				}
 				(*VecWIthGivenInput).push_back(1);
 				//when
-				AddVectors::AplusBonBwithCores3(VecToCheckAddA, VecToCheckAddB);
+				AddVectors::Cores3::AplusBonBwithCores3(VecToCheckAddA, VecToCheckAddB);
 				//then
 				for (int j = 0;j <= i;j++) {
 					Assert::AreEqual((*VecWIthGivenInput)[j], (*VecToCheckAddB)[j]);
@@ -235,7 +235,7 @@ namespace UnitTestAdd{
 				}
 				(*VecWIthGivenInput).push_back(1);
 				//when
-				AddVectors::AplusBonBwithCores3(VecToCheckAddA, VecToCheckAddB);
+				AddVectors::Cores3::AplusBonBwithCores3(VecToCheckAddA, VecToCheckAddB);
 				//then
 				for (int j = 0;j <= i;j++) {
 					Assert::AreEqual((*VecWIthGivenInput)[j], (*VecToCheckAddB)[j]);
@@ -262,7 +262,7 @@ namespace UnitTestAdd{
 					(*VecWIthGivenInput).push_back(0);
 				}
 				(*VecWIthGivenInput).push_back(1);
-				AddVectors::AplusBonBwithCores3(VecToCheckAddA, VecToCheckAddB);
+				AddVectors::Cores3::AplusBonBwithCores3(VecToCheckAddA, VecToCheckAddB);
 				//then
 				for (int j = 0;j <= i;j++) {
 					Assert::AreEqual((*VecWIthGivenInput)[j], (*VecToCheckAddB)[j]);
@@ -279,7 +279,7 @@ namespace UnitTestAdd{
 				for (i = 3;i <= 100;i++) {
 					(*VecToCheckAddA).push_back(999999999999999999);
 				}
-				AddVectors::AplusBonBwithCores3(VecToCheckAddA, VecToCheckAddB);
+				AddVectors::Cores3::AplusBonBwithCores3(VecToCheckAddA, VecToCheckAddB);
 				//then
 				for (int j = 0;j <= i;j++) {
 					Assert::AreEqual((*VecWIthGivenInput)[j], (*VecToCheckAddB)[j]);
@@ -295,7 +295,7 @@ namespace UnitTestAdd{
 				(*VecToCheckAddA).push_back(0);
 				(*VecToCheckAddB).push_back(0);
 				(*VecWIthGivenInput).push_back(0);
-				AddVectors::AplusBonBwithCores3(VecToCheckAddA, VecToCheckAddB);
+				AddVectors::Cores3::AplusBonBwithCores3(VecToCheckAddA, VecToCheckAddB);
 				//then
 				Assert::AreEqual((*VecWIthGivenInput)[0], (*VecToCheckAddB)[0]);
 				//when
@@ -305,7 +305,7 @@ namespace UnitTestAdd{
 				(*VecToCheckAddB).push_back(0);
 				(*VecWIthGivenInput).push_back(0);
 				(*VecWIthGivenInput).push_back(0);
-				AddVectors::AplusBonBwithCores3(VecToCheckAddA, VecToCheckAddB);
+				AddVectors::Cores3::AplusBonBwithCores3(VecToCheckAddA, VecToCheckAddB);
 				//then
 				Assert::AreEqual((*VecWIthGivenInput)[0], (*VecToCheckAddB)[0]);
 				Assert::AreEqual((*VecWIthGivenInput)[1], (*VecToCheckAddB)[1]);
@@ -324,7 +324,7 @@ namespace UnitTestAdd{
 					(*VecToCheckAddB).push_back(1);
 					(*VecWIthGivenInput).push_back(2);
 				}
-				AddVectors::AplusBonBwithCores3(VecToCheckAddA, VecToCheckAddB);
+				AddVectors::Cores3::AplusBonBwithCores3(VecToCheckAddA, VecToCheckAddB);
 				//then
 				for (int j = 0;j <= i;j++) {
 					Assert::AreEqual((*VecWIthGivenInput)[j], (*VecToCheckAddB)[j]);
@@ -342,7 +342,7 @@ namespace UnitTestAdd{
 				(*VecToCheckAddB).push_back(1);
 				(*VecWIthGivenInput).push_back(1);
 				(*VecWIthGivenInput).push_back(1);
-				AddVectors::AplusBonBwithCores3(VecToCheckAddA, VecToCheckAddB);
+				AddVectors::Cores3::AplusBonBwithCores3(VecToCheckAddA, VecToCheckAddB);
 				//then
 				Assert::AreEqual((*VecWIthGivenInput)[0], (*VecToCheckAddB)[0]);
 				Assert::AreEqual((*VecWIthGivenInput)[1], (*VecToCheckAddB)[1]);
@@ -355,7 +355,7 @@ namespace UnitTestAdd{
 				(*VecToCheckAddA).push_back(1);
 				(*VecWIthGivenInput).push_back(1);
 				(*VecWIthGivenInput).push_back(1);
-				AddVectors::AplusBonBwithCores3(VecToCheckAddA, VecToCheckAddB);
+				AddVectors::Cores3::AplusBonBwithCores3(VecToCheckAddA, VecToCheckAddB);
 				//then
 				Assert::AreEqual((*VecWIthGivenInput)[0], (*VecToCheckAddB)[0]);
 				Assert::AreEqual((*VecWIthGivenInput)[1], (*VecToCheckAddB)[1]);
@@ -383,7 +383,7 @@ namespace UnitTestAdd{
 				PowerOfTwo(VecPowerOfTwo);
 				(*VecToCheckResult).push_back(1);
 				for (unsigned long long i = 1; i < 1000; i++) {
-					AddVectors::AplusAonA(VecToCheckResult);
+					AddVectors::Arithmetic::AplusAonA(VecToCheckResult);
 					for (unsigned long long j = 0; j < (*VecToCheckResult).size() - 1; j++) {
 						StringCutStart = (*VecPowerOfTwo)[i].size() - (j + 1) * 18;
 						StringCutLength = 18;
@@ -407,7 +407,7 @@ namespace UnitTestAdd{
 				(*VecToCheckResult).push_back(0);
 				//when
 				for (unsigned long long i = 0; i < 15; i++) {
-					AddVectors::AplusAonA(VecToCheckResult);
+					AddVectors::Arithmetic::AplusAonA(VecToCheckResult);
 				}
 				//then
 				Assert::AreEqual((unsigned long long)0, (*VecToCheckResult)[0]);
@@ -424,7 +424,7 @@ namespace UnitTestAdd{
 				(*VecWIthGivenInput).push_back(0);
 
 				//when
-				AddVectors::AplusAonA(VecToCheckResult);
+				AddVectors::Arithmetic::AplusAonA(VecToCheckResult);
 				//then
 				Assert::AreNotEqual((*VecWIthGivenInput)[0], (*VecToCheckResult)[0]);
 			}
@@ -449,7 +449,7 @@ namespace UnitTestAdd{
 				(*VecToCheckAddA).push_back(1);
 
 				for (unsigned long long i = 1; i < 1000; i++) {
-					AddVectors::AplusAonB(VecToCheckAddA, VecToCheckAddB);
+					AddVectors::Arithmetic::AplusAonB(VecToCheckAddA, VecToCheckAddB);
 					//then
 					for (unsigned long long j = 0; j < (*VecToCheckAddB).size() - 1; j++) {
 						StringCutStart = (*VecPowerOfTwo)[i].size() - (j + 1) * 18;
@@ -465,7 +465,7 @@ namespace UnitTestAdd{
 						//then
 						Assert::AreEqual(BeginingOfVecPowerOfTwo, (*VecToCheckAddB)[(*VecToCheckAddB).size() - 1]);
 					}
-					AddVectors::AplusAonA(VecToCheckAddA);
+					AddVectors::Arithmetic::AplusAonA(VecToCheckAddA);
 				}
 			}
 			TEST_METHOD(Should_Add_Zero) {
@@ -477,7 +477,7 @@ namespace UnitTestAdd{
 				(*VecToCheckResultA).push_back(0);
 				//when
 				for (unsigned long long i = 0; i < 15; i++) {
-					AddVectors::AplusAonB(VecToCheckResultA, VecToCheckResultB);
+					AddVectors::Arithmetic::AplusAonB(VecToCheckResultA, VecToCheckResultB);
 				}
 				//then
 				Assert::AreEqual((unsigned long long)0, (*VecToCheckResultB)[0]);
@@ -499,7 +499,7 @@ namespace UnitTestAdd{
 				}
 				(*VecWIthGivenInput).push_back(1);
 				//when
-				AddVectors::AplusAonB(VecToCheckResultA, VecToCheckResultB);
+				AddVectors::Arithmetic::AplusAonB(VecToCheckResultA, VecToCheckResultB);
 				//then
 				for (int j = 0; j <= i; j++) {
 					Assert::AreEqual((*VecWIthGivenInput)[j], (*VecToCheckResultB)[j]);
@@ -519,7 +519,7 @@ namespace UnitTestAdd{
 				(*VecWIthGivenInput).push_back(0);
 
 				//when
-				AddVectors::AplusAonB(VecToCheckResultA, VecToCheckResultB);
+				AddVectors::Arithmetic::AplusAonB(VecToCheckResultA, VecToCheckResultB);
 				//then
 				Assert::AreNotEqual((*VecWIthGivenInput)[0], (*VecToCheckResultB)[0]);
 			}
@@ -543,7 +543,7 @@ namespace UnitTestAdd{
 				(*VecToCheckAddA).push_back(1);
 				(*VecToCheckAddB).push_back(1);
 				for (unsigned long long i = 1; i < 1000; i++) {
-					AddVectors::AplusBonB(VecToCheckAddA, VecToCheckAddB);
+					AddVectors::Arithmetic::AplusBonB(VecToCheckAddA, VecToCheckAddB);
 					for (unsigned long long j = 0; j < (*VecToCheckAddB).size() - 1; j++) {
 						StringCutStart = (*VecPowerOfTwo)[i].size() - (j + 1) * 18;
 						StringCutLength = 18;
@@ -558,7 +558,7 @@ namespace UnitTestAdd{
 						//then
 						Assert::AreEqual(BeginingOfVecPowerOfTwo, (*VecToCheckAddB)[(*VecToCheckAddB).size() - 1]);
 					}
-					AddVectors::AplusAonA(VecToCheckAddA);
+					AddVectors::Arithmetic::AplusAonA(VecToCheckAddA);
 				}
 			}
 			TEST_METHOD(Should_Add_Correctly_When_VectorB_Is_Longer_Than_VectorA) {
@@ -579,9 +579,9 @@ namespace UnitTestAdd{
 				(*VecToCheckAddC).push_back(2);
 
 				for (unsigned long long i = 1; i < 1000; i++) {
-					AddVectors::AplusAonA(VecToCheckAddB);
+					AddVectors::Arithmetic::AplusAonA(VecToCheckAddB);
 					(*VecToCheckAddC) = (*VecToCheckAddB);
-					AddVectors::AplusBonB(VecToCheckAddA, VecToCheckAddC);
+					AddVectors::Arithmetic::AplusBonB(VecToCheckAddA, VecToCheckAddC);
 					for (unsigned long long j = 0; j < (*VecToCheckAddC).size() - 1; j++) {
 						StringCutStart = (*VecPowerOfTwo)[i + 1].size() - (j + 1) * 18;
 						StringCutLength = 18;
@@ -617,9 +617,9 @@ namespace UnitTestAdd{
 				(*VecToCheckAddC).push_back(2);
 
 				for (unsigned long long i = 1; i < 1000; i++) {
-					AddVectors::AplusAonA(VecToCheckAddA);
+					AddVectors::Arithmetic::AplusAonA(VecToCheckAddA);
 					(*VecToCheckAddC) = (*VecToCheckAddB);
-					AddVectors::AplusBonB(VecToCheckAddA, VecToCheckAddC);
+					AddVectors::Arithmetic::AplusBonB(VecToCheckAddA, VecToCheckAddC);
 					for (unsigned long long j = 0; j < (*VecToCheckAddC).size() - 1; j++) {
 						StringCutStart = (*VecPowerOfTwo)[i + 1].size() - (j + 1) * 18;
 						StringCutLength = 18;
@@ -651,7 +651,7 @@ namespace UnitTestAdd{
 				(*VecWIthGivenInput).push_back(0);
 				//then
 				for (unsigned long long i = 1; i < 1000; i++) {
-					AddVectors::AplusBonB(VecToCheckAddA, VecToCheckAddB);
+					AddVectors::Arithmetic::AplusBonB(VecToCheckAddA, VecToCheckAddB);
 					Assert::AreEqual((*VecWIthGivenInput)[0], (*VecToCheckAddB)[0]);
 				}
 			}
@@ -671,7 +671,7 @@ namespace UnitTestAdd{
 					(*VecWIthGivenInput).push_back(0);
 				}
 				(*VecWIthGivenInput).push_back(1);
-				AddVectors::AplusBonB(VecToCheckAddA, VecToCheckAddB);
+				AddVectors::Arithmetic::AplusBonB(VecToCheckAddA, VecToCheckAddB);
 				//then
 				for (int j = 0;j <= i;j++) {
 					Assert::AreEqual((*VecWIthGivenInput)[j], (*VecToCheckAddB)[j]);
@@ -683,7 +683,7 @@ namespace UnitTestAdd{
 				for (i = 0;i <= 100;i++) {
 					(*VecToCheckAddA).push_back(999999999999999999);
 				}
-				AddVectors::AplusBonB(VecToCheckAddA, VecToCheckAddB);
+				AddVectors::Arithmetic::AplusBonB(VecToCheckAddA, VecToCheckAddB);
 				//then
 				for (int j = 0;j <= i;j++) {
 					Assert::AreEqual((*VecWIthGivenInput)[j], (*VecToCheckAddB)[j]);
@@ -708,7 +708,7 @@ namespace UnitTestAdd{
 				}
 				(*VecWIthGivenInput).push_back(1);
 				//when
-				AddVectors::AplusBonB(VecToCheckAddA, VecToCheckAddB);
+				AddVectors::Arithmetic::AplusBonB(VecToCheckAddA, VecToCheckAddB);
 				//then
 				for (int j = 0;j <= i;j++) {
 					Assert::AreEqual((*VecWIthGivenInput)[j], (*VecToCheckAddB)[j]);
@@ -723,7 +723,7 @@ namespace UnitTestAdd{
 				(*VecToCheckAddA).resize(0);
 				(*VecToCheckAddB).push_back(1);
 				for (unsigned long long i = 1; i < 1000; i++) {
-					AddVectors::AplusBonB(VecToCheckAddA, VecToCheckAddB);
+					AddVectors::Arithmetic::AplusBonB(VecToCheckAddA, VecToCheckAddB);
 					//then
 					Assert::AreEqual((unsigned long long)1, (*VecToCheckAddB)[0]);
 				}
@@ -732,7 +732,7 @@ namespace UnitTestAdd{
 				(*VecToCheckAddA).push_back(1);
 				(*VecToCheckAddB).resize(0);
 				for (unsigned long long i = 1; i < 1000; i++) {
-					AddVectors::AplusBonB(VecToCheckAddB, VecToCheckAddA);
+					AddVectors::Arithmetic::AplusBonB(VecToCheckAddB, VecToCheckAddA);
 					//then
 					Assert::AreEqual((unsigned long long)1, (*VecToCheckAddA)[0]);
 				}
@@ -746,7 +746,7 @@ namespace UnitTestAdd{
 				(*VecToCheckAddA).resize(0);
 				(*VecToCheckAddB).resize(0);
 				for (unsigned long long i = 1; i < 1000; i++) {
-					AddVectors::AplusBonB(VecToCheckAddA, VecToCheckAddB);
+					AddVectors::Arithmetic::AplusBonB(VecToCheckAddA, VecToCheckAddB);
 					//then
 					Assert::AreEqual((unsigned long long)0, (*VecToCheckAddB).size());
 				}
@@ -773,7 +773,7 @@ namespace UnitTestAdd{
 					PowerOfTwo(VecPowerOfTwo);
 					(*VecToCheckResult).push_back(1);
 					for (unsigned long long i = 1; i < 1000; i++) {
-						AddVectors::AplusAonAwithRestExponent(VecToCheckResult, intRestExp);
+						AddVectors::Arithmetic::AplusAonAwithRestExponent(VecToCheckResult, intRestExp);
 						for (unsigned long long j = 0; j < (*VecToCheckResult).size() - 1; j++) {
 							start = (*VecPowerOfTwo)[i].size() - (j + 1) * (*intRestExp);
 							range = (*intRestExp);
@@ -806,7 +806,7 @@ namespace UnitTestAdd{
 				(*VecWIthGivenInput).push_back(0);
 
 				//when
-				AddVectors::AplusAonAwithRestExponent(VecToCheckResult, intRestExp);
+				AddVectors::Arithmetic::AplusAonAwithRestExponent(VecToCheckResult, intRestExp);
 				//then
 				Assert::AreNotEqual((*VecWIthGivenInput)[0], (*VecToCheckResult)[0]);
 			}
@@ -829,7 +829,7 @@ namespace UnitTestAdd{
 
 				//when
 				for (unsigned long long i = 0; i < 15; i++) {
-					AddVectors::AplusAonAwithRestExponent(VecToCheckResult, intRestExp);
+					AddVectors::Arithmetic::AplusAonAwithRestExponent(VecToCheckResult, intRestExp);
 				}
 				//then
 				for (unsigned long long i = 0; i < 3; i++) {
@@ -853,7 +853,7 @@ namespace UnitTestAdd{
 
 				//when
 				for (unsigned long long i = 0; i < 15; i++) {
-					AddVectors::AplusAonAwithRestExponent(VecToCheckResult, intRestExp);
+					AddVectors::Arithmetic::AplusAonAwithRestExponent(VecToCheckResult, intRestExp);
 				}
 				//then
 				Assert::AreEqual((*VecWIthGivenInput)[0], (*VecToCheckResult)[0]);
@@ -880,7 +880,7 @@ namespace UnitTestAdd{
 				(*VecToCheckAddA).push_back(1);
 				(*VecToCheckAddB).push_back(1);
 				for (unsigned long long i = 1; i < 1000; i++) {
-					AddVectors::AplusBonC(VecToCheckAddA, VecToCheckAddB, VecToCheckResult);
+					AddVectors::Arithmetic::AplusBonC(VecToCheckAddA, VecToCheckAddB, VecToCheckResult);
 					for (unsigned long long j = 0; j < (*VecToCheckResult).size() - 1; j++) {
 						StringCutStart = (*VecPowerOfTwo)[i].size() - (j + 1) * 18;
 						StringCutLength = 18;
@@ -895,8 +895,8 @@ namespace UnitTestAdd{
 						//then
 						Assert::AreEqual(BeginingOfVecPowerOfTwo, (*VecToCheckResult)[(*VecToCheckResult).size() - 1]);
 					}
-					AddVectors::AplusAonA(VecToCheckAddA);
-					AddVectors::AplusAonA(VecToCheckAddB);
+					AddVectors::Arithmetic::AplusAonA(VecToCheckAddA);
+					AddVectors::Arithmetic::AplusAonA(VecToCheckAddB);
 				}
 			}
 			TEST_METHOD(Should_Add_Correctly_When_VectorB_Is_Longer_Than_VectorA) {
@@ -918,8 +918,8 @@ namespace UnitTestAdd{
 				(*VecToCheckAddB).push_back(2);
 
 				for (unsigned long long i = 1; i < 1000; i++) {
-					AddVectors::AplusAonA(VecToCheckAddB);
-					AddVectors::AplusBonC(VecToCheckAddA, VecToCheckAddB, VecToCheckResult);
+					AddVectors::Arithmetic::AplusAonA(VecToCheckAddB);
+					AddVectors::Arithmetic::AplusBonC(VecToCheckAddA, VecToCheckAddB, VecToCheckResult);
 					for (unsigned long long j = 0; j < (*VecToCheckResult).size() - 1; j++) {
 						StringCutStart = (*VecPowerOfTwo)[i + 1].size() - (j + 1) * 18;
 						StringCutLength = 18;
@@ -956,8 +956,8 @@ namespace UnitTestAdd{
 				(*VecToCheckAddB).push_back(1);
 
 				for (unsigned long long i = 1; i < 1000; i++) {
-					AddVectors::AplusAonA(VecToCheckAddA);
-					AddVectors::AplusBonC(VecToCheckAddA, VecToCheckAddB, VecToCheckResult);
+					AddVectors::Arithmetic::AplusAonA(VecToCheckAddA);
+					AddVectors::Arithmetic::AplusBonC(VecToCheckAddA, VecToCheckAddB, VecToCheckResult);
 					for (unsigned long long j = 0; j < (*VecToCheckResult).size() - 1; j++) {
 						StringCutStart = (*VecPowerOfTwo)[i + 1].size() - (j + 1) * 18;
 						StringCutLength = 18;
@@ -995,8 +995,8 @@ namespace UnitTestAdd{
 				(*VecToCheckResult).push_back(0);
 				//then
 				for (unsigned long long i = 1; i < 1000; i++) {
-					AddVectors::AplusAonA(VecToCheckAddB);
-					AddVectors::AplusBonC(VecToCheckAddA, VecToCheckAddB, VecToCheckResult);
+					AddVectors::Arithmetic::AplusAonA(VecToCheckAddB);
+					AddVectors::Arithmetic::AplusBonC(VecToCheckAddA, VecToCheckAddB, VecToCheckResult);
 					for (unsigned long long j = 0; j < (*VecToCheckResult).size() - 1; j++) {
 						StringCutStart = (*VecPowerOfTwo)[i].size() - (j + 1) * 18;
 						StringCutLength = 18;
@@ -1033,8 +1033,8 @@ namespace UnitTestAdd{
 				(*VecToCheckResult).push_back(0);
 				//then
 				for (unsigned long long i = 1; i < 1000; i++) {
-					AddVectors::AplusAonA(VecToCheckAddB);
-					AddVectors::AplusBonC(VecToCheckAddA, VecToCheckAddB, VecToCheckResult);
+					AddVectors::Arithmetic::AplusAonA(VecToCheckAddB);
+					AddVectors::Arithmetic::AplusBonC(VecToCheckAddA, VecToCheckAddB, VecToCheckResult);
 					for (unsigned long long j = 0; j < (*VecToCheckResult).size() - 1; j++) {
 						StringCutStart = (*VecPowerOfTwo)[i].size() - (j + 1) * 18;
 						StringCutLength = 18;
@@ -1067,7 +1067,7 @@ namespace UnitTestAdd{
 				(*VecWIthGivenInput).push_back(0);
 				//then
 				for (unsigned long long i = 1; i < 100; i++) {
-					AddVectors::AplusBonC(VecToCheckAddA, VecToCheckAddB, VecToCheckResult);
+					AddVectors::Arithmetic::AplusBonC(VecToCheckAddA, VecToCheckAddB, VecToCheckResult);
 					Assert::AreEqual((*VecWIthGivenInput)[0], (*VecToCheckResult)[0]);
 				}
 			}
@@ -1092,7 +1092,7 @@ namespace UnitTestAdd{
 				}
 				(*VecWIthGivenInput).push_back(1);
 				//when
-				AddVectors::AplusBonC(VecToCheckAddA, VecToCheckAddB, VecToCheckResult);
+				AddVectors::Arithmetic::AplusBonC(VecToCheckAddA, VecToCheckAddB, VecToCheckResult);
 				//then
 				for (int j = 0;j <= i;j++) {
 					Assert::AreEqual((*VecWIthGivenInput)[j], (*VecToCheckResult)[j]);
@@ -1116,7 +1116,7 @@ namespace UnitTestAdd{
 					(*VecWIthGivenInput).push_back(0);
 				}
 				(*VecWIthGivenInput).push_back(1);
-				AddVectors::AplusBonC(VecToCheckAddA, VecToCheckAddB, VecToCheckResult);
+				AddVectors::Arithmetic::AplusBonC(VecToCheckAddA, VecToCheckAddB, VecToCheckResult);
 				//then
 				for (int j = 0;j <= i;j++) {
 					Assert::AreEqual((*VecWIthGivenInput)[j], (*VecToCheckResult)[j]);
@@ -1128,7 +1128,7 @@ namespace UnitTestAdd{
 				for (i = 0;i <= 100;i++) {
 					(*VecToCheckAddA).push_back(999999999999999999);
 				}
-				AddVectors::AplusBonC(VecToCheckAddA, VecToCheckAddB, VecToCheckResult);
+				AddVectors::Arithmetic::AplusBonC(VecToCheckAddA, VecToCheckAddB, VecToCheckResult);
 				//then
 				for (int j = 0;j <= i;j++) {
 					Assert::AreEqual((*VecWIthGivenInput)[j], (*VecToCheckResult)[j]);
