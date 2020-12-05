@@ -1,6 +1,6 @@
 #include "SubVectors.hpp"
 
-void SubVectors::BminusAonB(std::vector<unsigned long long>* SubB, std::vector<unsigned long long>* SubA)
+void SubVectors::BsubAonB(std::vector<unsigned long long>* SubB, std::vector<unsigned long long>* SubA)
 {
 	int Rest = 0;
 	if ((*SubA).size() == (*SubB).size()) {
@@ -46,6 +46,6 @@ void SubVectors::BminusAonB(std::vector<unsigned long long>* SubB, std::vector<u
 		}
 	}
 	else {
-		//add not possible?
+		//sub not possible?
 	}
 }
