@@ -14,6 +14,7 @@ void SubVectors::BsubAonB(std::vector<unsigned long long>* SubB, std::vector<uns
 				Rest = 1;
 			}
 		}
+		//if((*SubB).size()>0)
 		for (unsigned long long i = (*SubB).size() - 1; i >= 1; i--) {
 			if ((*SubB)[i] == 0) (*SubB).pop_back();
 			else break;
@@ -32,17 +33,19 @@ void SubVectors::BsubAonB(std::vector<unsigned long long>* SubB, std::vector<uns
 		}
 		if (Rest == 1) {
 			for (unsigned long long i = (*SubA).size(); i <= (*SubB).size() - 1; i++) {
-				(*SubB)[i] = (*SubB)[i] - Rest;
-				if ((*SubB)[i] >= 1000000000000000000) {
-					(*SubB)[i] = (*SubB)[i] - 1000000000000000000;
+				if ((*SubB)[i] > 0) {
+					(*SubB)[i] = (*SubB)[i] - Rest;
+					break;
+				}
+				else {
+					(*SubB)[i] = 999999999999999999;
 					Rest = 1;
 				}
-				else break;
 			}
-			for (unsigned long long i = (*SubB).size() - 1; i >= 1; i--) {
-				if ((*SubB)[i] == 0) (*SubB).pop_back();
-				else break;
-			}
+		}
+		for (unsigned long long i = (*SubB).size() - 1; i >= 1; i--) {
+			if ((*SubB)[i] == 0) (*SubB).pop_back();
+			else break;
 		}
 	}
 	else {
