@@ -9,3 +9,5 @@ ExcMath/Release/
 LICENSE
 x64/
 *.vs/*
+ExcMath/*.vcxproj
+ExcMath/*.vcxproj.filters
